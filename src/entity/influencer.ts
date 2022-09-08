@@ -4,13 +4,13 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-  ManyToOne,
-  JoinColumn,
+  OneToOne,
+  BaseEntity,
 } from 'typeorm';
 import { SearchPost } from './search_post';
 
 @Entity()
-export class InfluEncer {
+export class InfluEncer{
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -18,13 +18,13 @@ export class InfluEncer {
   nick_name: string;
 
   @Column()
-  folower_count: string;
+  folower_count: number;
 
   @Column()
   interest: string;
 
   @Column()
-  age: string;
+  age: number;
 
   @Column()
   gender: string;
@@ -38,10 +38,6 @@ export class InfluEncer {
   @UpdateDateColumn()
   updated_at: Date;
 
-  @ManyToOne(() => SearchPost, (search_post) => search_post.id, {
-    onDelete: 'CASCADE',
-    onUpdate: 'CASCADE',
-  })
-  @JoinColumn([{ name: 'search_post_id', referencedColumnName: 'id' }])
+  @OneToOne(() => SearchPost, (search_post) => search_post.influencer )
   search_post: SearchPost;
 }

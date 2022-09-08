@@ -1,8 +1,10 @@
 import {
+  BaseEntity,
   Column,
   CreateDateColumn,
   Entity,
-  OneToMany,
+  JoinColumn,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -28,6 +30,7 @@ export class SearchPost {
   @UpdateDateColumn()
   updated_at: Date;
 
-  @OneToMany(() => InfluEncer, (influencer) => influencer.id)
-  influencer: InfluEncer[];
+  @OneToOne(() => InfluEncer, (influencer) => influencer.search_post)
+  @JoinColumn([{ name: 'influencer_id', referencedColumnName: 'id'}])
+  influencer: InfluEncer;
 }

@@ -1,4 +1,4 @@
-import { IsDate, IsNotEmpty, IsString } from 'class-validator';
+import { IsDate, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class search_post_dto {
   @IsString()
@@ -13,17 +13,21 @@ export class search_post_dto {
   @IsNotEmpty()
   period_min: string;
 
-  @IsString()
-  folower_max: string;
+  @IsNumber()
+  @IsNotEmpty()
+  influencer_id: number;
 
   @IsString()
-  folower_min: string;
+  folower_max: number;
+
+  @IsString()
+  folower_min: number;
 
   @IsString()
   interest: string;
 
   @IsString()
-  age: string;
+  age: number;
 
   @IsString()
   gender: string;
